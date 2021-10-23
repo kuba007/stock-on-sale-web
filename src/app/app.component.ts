@@ -16,5 +16,20 @@ export class AppComponent {
     async loadData() {
         const data = await this.http.get('https://stocks.jamesdeer.io/data/dashboard.json').toPromise();
         this.all = Object.keys(data).map(key => Object.assign({ticker: key}, data[key]));
+        this.sortBy('month');
+    }
+
+    sortBy(key: string) {
+        this.all = this.all.sort((one, two) => one[key] - two[key]);
+    }
+
+    ago(updated: number) {
+        const diffMinutes = Math.round((new Date().getTime() - updated) / 1000 / 60);
+        if (diffMinutes < 60) {
+            return diffMinutes + 'm';
+        }
+
+        const diffHours = Math.round(diffMinutes / 60);
+        return diffHours + 'h';
     }
 }

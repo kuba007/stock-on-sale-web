@@ -3,11 +3,12 @@
     <tr>
        <th></th>
        <th>Ticker</th>
-       <th style="text-align: right">Week</th>
-       <th style="text-align: right">Month</th>
-       <th style="text-align: right">Year</th>
-       <th style="text-align: right">2 Years</th>
+       <th style="text-align: right" (click)="sortBy('week')">Week</th>
+       <th style="text-align: right" (click)="sortBy('month')">Month</th>
+       <th style="text-align: right" (click)="sortBy('year')">Year</th>
+       <th style="text-align: right" (click)="sortBy('twoYears')">2 Years</th>
        <th>Detail</th>
+       <th style="text-align: right" (click)="sortBy('updated')">Updated</th>
     </tr>
     </thead>
     <tbody>
@@ -19,6 +20,7 @@
         <td class="pct-cell" [class.red]="item.year < 0" [class.green]="item.year > 0">{{ item.year }}</td>
         <td class="pct-cell" [class.red]="item.twoYears < 0" [class.green]="item.twoYears > 0">{{ item.twoYears }}</td>
         <td><a [href]="'https://markets.businessinsider.com/stocks/' + item.ticker +'-stock'" target="_blank">Market Insider</a></td>
+        <td style="text-align: right">{{ ago(item.updated) }}</td>
     </tr>
     </tbody>
 </table>
