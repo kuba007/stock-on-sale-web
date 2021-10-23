@@ -1,0 +1,25 @@
+<table>
+    <thead>
+    <tr>
+       <th></th>
+       <th>Ticker</th>
+       <th style="text-align: right">Week</th>
+       <th style="text-align: right">Month</th>
+       <th style="text-align: right">Year</th>
+       <th style="text-align: right">2 Years</th>
+       <th>Detail</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of all">
+        <td class="icon-cell"><img [src]="item.icon"></td>
+        <td class="name-cell">{{ item.name }}<span *ngIf="!item.name">{{ item.ticker }}</span></td>
+        <td class="pct-cell" [class.red]="item.week < 0" [class.green]="item.week > 0">{{ item.week }}</td>
+        <td class="pct-cell" [class.red]="item.month < 0" [class.green]="item.month > 0">{{ item.month }}</td>
+        <td class="pct-cell" [class.red]="item.year < 0" [class.green]="item.year > 0">{{ item.year }}</td>
+        <td class="pct-cell" [class.red]="item.twoYears < 0" [class.green]="item.twoYears > 0">{{ item.twoYears }}</td>
+        <td><a [href]="'https://markets.businessinsider.com/stocks/' + item.ticker +'-stock'" target="_blank">Market Insider</a></td>
+    </tr>
+    </tbody>
+</table>
+
