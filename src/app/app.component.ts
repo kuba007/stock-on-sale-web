@@ -24,6 +24,10 @@ export class AppComponent {
     }
 
     ago(updated: number) {
+        if (updated === 0) {
+            return 'never';
+        }
+
         const diffMinutes = Math.round((new Date().getTime() - updated) / 1000 / 60);
         if (diffMinutes < 60) {
             return diffMinutes + 'm';
