@@ -14,7 +14,7 @@ export class AppComponent {
     }
 
     async loadData() {
-        const data = await this.http.get('https://stocks.jamesdeer.io/dashboard.json').toPromise();
+        const data = await this.http.get('https://stocks.jamesdeer.io/data/dashboard.json').toPromise();
         this.all = Object.keys(data).map(key => Object.assign({ticker: key}, data[key]));
     }
 }
