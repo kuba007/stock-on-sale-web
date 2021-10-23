@@ -1,0 +1,40 @@
+name: Build and deploy
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10.16.3
+
+      - name: npm ci
+        run: npm ci
+
+      - name: npm build:prod
+        run: npm run build:prod
+
+      - name: Add .htaccess
+        run: cp deployment/.htaccess dist/c19-web
+
+      - name: Upload to FTP
+        uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
+        with:
+          ftp_host: ftp.jamesdeer.cz
+          ftp_username: stocks_web_jamesdeer.cz
+          ftp_password: ${{ secrets.FTP_PASSWORD }}
+          local_source_dir: "dist/stocks-on-sale-web"
+          dist_target_dir: "/"
+          delete: "true"
+          exclude: "'^data/'"
+
