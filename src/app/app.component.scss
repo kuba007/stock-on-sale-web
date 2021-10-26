@@ -30,9 +30,11 @@ table {
     }
 }
 
-.icon-cell img {
-    width: 24px;
-    height: 24px;
+.icon-cell {
+    & img {
+        width: 24px;
+        height: 24px;
+    }
 }
 
 .pct-cell {
@@ -50,9 +52,11 @@ table {
     &::before {
         content: '+';
     }
+
     color: green;
 }
 
 .red {
     color: red;
 }
+

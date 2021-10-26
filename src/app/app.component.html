@@ -3,6 +3,7 @@
     <tr>
        <th></th>
        <th>Ticker</th>
+       <th style="text-align: right" (click)="sortBy('currentValue')">Current</th>
        <th style="text-align: right" (click)="sortBy('week')">Week</th>
        <th style="text-align: right" (click)="sortBy('month')">Month</th>
        <th style="text-align: right" (click)="sortBy('year')">Year</th>
@@ -15,6 +16,7 @@
     <tr *ngFor="let item of all">
         <td class="icon-cell"><img [src]="item.icon"></td>
         <td class="name-cell">{{ item.name }}<span *ngIf="!item.name">{{ item.ticker }}</span></td>
+        <td class="value-cell"><strong>{{ item.currentValue }}</strong> $</td>
         <td class="pct-cell" [class.red]="item.week < 0" [class.green]="item.week > 0">{{ item.week }}</td>
         <td class="pct-cell" [class.red]="item.month < 0" [class.green]="item.month > 0">{{ item.month }}</td>
         <td class="pct-cell" [class.red]="item.year < 0" [class.green]="item.year > 0">{{ item.year }}</td>
